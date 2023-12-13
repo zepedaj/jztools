@@ -60,9 +60,13 @@ def setattrs(obj, **kwargs):
     """
     Sets the attributes specified as keywords. The returned object is the same as the input object, with attributes modified.
 
-    .. Example::
+    Example:
+
+    .. code-block::
+
         obj = Rectangle()
         attr_update(obj, width=10, height=20)
+
     """
 
     for key, val in kwargs.items():
@@ -135,9 +139,7 @@ def import_from_string(path):
 
 def obj_from_string(class_path, *args, **kwargs):
     """
-    Given a module + class path of the form
-       module.submodule.ClassName
-    returns an instance of that object with args and kwargs used to instantiate it.
+    Given a module and class path of the form ``module.submodule.ClassName``, returns an instance of that object with `*args` and `**kwargs` used to instantiate it.
     """
     cls = import_from_string(class_path)
     return cls(*args, **kwargs)

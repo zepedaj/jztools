@@ -6,14 +6,13 @@
 JZTools Documentation
 ===================================
 
-The **jztools** module is a staging area for various personal utilities that are general enough that they are useful across various personal projects.
+The **jztools** module is a staging area for various utilities that are useful across various personal projects.
 
 
 .. toctree::
    :hidden:
 
    self
-
 
 .. autosummary::
    :nosignatures:

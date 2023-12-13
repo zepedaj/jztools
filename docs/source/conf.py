@@ -55,10 +55,7 @@ exclude_patterns = []
 #
 html_theme = "sphinx_book_theme"
 html_logo = "images/jzt1.png"
-html_theme_options = {
-    #    "logo_only": True,
-    # "display_version": True,
-}
+html_theme_options = {}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

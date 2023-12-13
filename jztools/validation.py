@@ -109,17 +109,21 @@ def checked_filter_single(
 
 def check_option(name, value, options, ignore_list=[]):
     """
-    Checks that an option has a valid value, raising :exception:`InvalidOptionValue` otherwise.
+    Checks that an option has a valid value, raising :class:`InvalidOptionValue` otherwise.
 
     :param name: The name of the option to check.
     :param value: The value of the option.
     :param options: List of valid option values.
     :param ignore_list: Do not raise an error if value is in this list.
-    .. Rubric:: Example
+
+    .. rubric:: Example
+
+    .. code-block::
 
         def winner(medal):
             check_option('medal', medal, [1, 2, 3], ignore_list=[-1])
             ...
+
     """
     if value not in options and value not in ignore_list:
         raise InvalidOptionValue(
