@@ -1,0 +1,39 @@
+#!/usr/bin/env python
+import climax as clx
+import subprocess as subp
+from uuid import uuid1
+
+
+@clx.command()
+@clx.argument(
+    "--package",
+    default="local:.",
+    help="Package to install. Use local:<path> to install from local source or pip:<name> to install from pip repository",
+)
+@clx.argument("--tests", default="./tests", help="Path to tests")
+def main(package, tests):
+    """
+    Creates a new conda environment, installs the specified package, and runs the tests in the specified directory.
+
+    Run from a python project root to test the module under development in isolation.
+    """
+
+    # Build the installation command
+    if package.startswith("local:"):
+        install_cmd = ["pip", "install", "-e", package.strip("local:")]
+    elif package.startswith("pip:"):
+        install_cmd = ["pip", "install", package.strip("pip:")]
+
+    # Build the env and run tests
+    conda_env = str(uuid1())
+    try:
+        subp.check_call(["conda", "create", "-y", "-n", conda_env, "pip", "pytest"])
+        cmds = [install_cmd, ["pytest", tests]]
+        for cmd in cmds:
+            subp.check_call(["conda", "run", *cmd])
+    finally:
+        subp.check_call(["conda", "env", "remove", "-y", "-n", conda_env])
+
+
+if __name__ == "__main__":
+    main()
