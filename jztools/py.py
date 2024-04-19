@@ -30,7 +30,9 @@ def get_caller(offset=1):
             return getattr(frame.f_locals["self"], stack.function)
         else:
             # if stack.function in frame.f_locals:
-            return frame.f_back.f_locals[stack.function]
+            return frame.f_back.f_locals.get(
+                stack.function, frame.f_back.f_globals.get(stack.function)
+            )
 
 
 def dict_prune(x: Dict, prune_val=None):
