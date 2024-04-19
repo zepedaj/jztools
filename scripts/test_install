@@ -30,7 +30,7 @@ def main(package, tests):
         subp.check_call(["conda", "create", "-y", "-n", conda_env, "pip", "pytest"])
         cmds = [install_cmd, ["pytest", tests]]
         for cmd in cmds:
-            subp.check_call(["conda", "run", *cmd])
+            subp.check_call(["conda", "run", "-n", conda_env, *cmd])
     finally:
         subp.check_call(["conda", "env", "remove", "-y", "-n", conda_env])
 

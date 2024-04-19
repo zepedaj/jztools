@@ -8,9 +8,9 @@ with open("README.md") as f:
 setup(
     name="jztools",
     packages=find_packages(".", exclude=["tests"]),
-    version="0.1.3",
+    version="0.1.4",
     description="General python utilies",
-    scripts=["scripts/test_install"],
+    scripts=["scripts/test_install", "scripts/isorun"],
     install_requires=["pygments", "numpy", "climax", "tqdm", "coloredlogs"],
     author="Joaquin Zepeda",
     long_description=long_description,

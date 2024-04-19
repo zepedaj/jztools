@@ -1,0 +1,43 @@
+#!/usr/bin/env python
+"""
+This command creates an isolated conda environment with the specified packages and runs the specified command within that package.
+"""
+
+import climax as clx
+import subprocess as subp
+from uuid import uuid1
+
+
+@clx.command(description="Run a command in an isolated conda environment")
+@clx.argument(
+    "--pkgs",
+    default=None,
+    nargs="*",
+    help="Packages to install as part of the conda env creation",
+)
+@clx.argument("--reqs", default=None, help="A requirements file to install using pip")
+@clx.argument("command", nargs="+", help="The command to run")
+def main(command, pkgs, reqs):
+    """
+    Creates a new conda environment, installs the specified package, and runs the tests in the specified directory.
+
+    Run from a python project root to test the module under development in isolation.
+    """
+
+    # Build the env and run tests
+    conda_env = str(uuid1())
+    try:
+        subp.check_call(["conda", "create", "-y", "-n", conda_env] + (pkgs or []))
+
+        cmds = []
+        if reqs:
+            cmds += [["conda", "install", "pip"], ["pip", "install", "-r", reqs]]
+
+        for cmd in cmds + [command]:
+            subp.check_call(["conda", "run", "-n", conda_env, *cmd])
+    finally:
+        subp.check_call(["conda", "env", "remove", "-y", "-n", conda_env])
+
+
+if __name__ == "__main__":
+    main()

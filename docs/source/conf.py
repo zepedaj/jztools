@@ -22,7 +22,7 @@ copyright = "2023, Joaquin Zepeda"
 author = "Joaquin Zepeda"
 
 # The full version, including alpha/beta/rc tags
-release = "0.1.3"
+release = "0.1.4"
 
 
 # -- General configuration ---------------------------------------------------
