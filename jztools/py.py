@@ -10,7 +10,8 @@ import traceback
 import inspect
 import tempfile
 from importlib import import_module as _import_module
-from py.path import local  # TODO - pytest session still returns this type of paths
+
+# from py.path import local  # TODO - pytest session still returns this type of paths
 
 
 def _raise(ex):
