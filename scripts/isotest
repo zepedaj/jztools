@@ -8,8 +8,8 @@ from uuid import uuid1
 @clx.argument(
     "--package",
     default="local:.",
-    help="Package to install. Use local:<path> to install from local source or pip:<name> to install from pip repository",
-)
+    help="[local:.] Package to install. Use local:<path> to install from local source or pip:<name> to install from pip repository",
+)  #
 @clx.argument("--tests", default="./tests", help="Path to tests")
 def main(package, tests):
     """
