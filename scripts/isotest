@@ -19,10 +19,10 @@ def main(package, tests):
     """
 
     # Build the installation command
-    if package.startswith("local:"):
-        install_cmd = ["pip", "install", "-e", package.strip("local:")]
-    elif package.startswith("pip:"):
-        install_cmd = ["pip", "install", package.strip("pip:")]
+    if package.startswith(pref := "local:"):
+        install_cmd = ["pip", "install", "-e", package[len(pref) :]]
+    elif package.startswith(pref := "pip:"):
+        install_cmd = ["pip", "install", package[len(pref) :]]
 
     # Build the env and run tests
     conda_env = str(uuid1())

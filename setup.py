@@ -8,7 +8,7 @@ with open("README.md") as f:
 setup(
     name="jztools",
     packages=find_packages(".", exclude=["tests"]),
-    version="0.1.5",
+    version="0.1.6",
     description="General python utilies",
     scripts=["scripts/isotest", "scripts/isorun"],
     install_requires=[
